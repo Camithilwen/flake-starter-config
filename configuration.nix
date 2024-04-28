@@ -101,12 +101,12 @@
     ];
   };
 
-home-manager = {
+ home-manager = {
 
   extraSpecialArgs = { inherit inputs; };
   users = {
-    "jam" = import ./home.nix;
-  };
+     "jam" = import ./home.nix;
+   };
  };
 
   # Allow unfree packages
