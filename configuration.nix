@@ -2,13 +2,18 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+#      ./main-user.nix
+      inputs.home-manager.nixosModules.default
     ];
+
+#  main-user.enable = true;
+#  main-user.userName = "jam";
 
   # Bootloader.
   boot.loader.grub.enable = true;
@@ -95,6 +100,14 @@
       thunderbird
     ];
   };
+
+home-manager = {
+
+  extraSpecialArgs = { inherit inputs; };
+  users = {
+    "jam" = import ./home.nix;
+  };
+ };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
