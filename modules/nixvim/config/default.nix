@@ -1,5 +1,6 @@
-{
+
   # Import all your configuration modules here
+{self, ...}: {
   imports = [
     ./bufferline.nix
   ];
@@ -21,8 +22,13 @@
     servers = {
 
       rust-analyzer.enable = true;
+	
+#	plugins.lsp.servers.rust-analyzer.installCargo = true;
+#	plugins.lsp.servers.rust-analyzer.installRustc = true;
 
-      pylyzer.enable = true;
+     # jedi-language-server.enable  = true;
 
       java-language-server.enable = true;
+    };
+  };
 }
