@@ -2,8 +2,8 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
-
+{ config, pkgs, inputs,  ... }:
+#remember to add inputs back ^
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -101,10 +101,10 @@
     ];
   };
 
- home-manager = {
+  home-manager = {
 
-  extraSpecialArgs = { inherit inputs; };
-  users = {
+   extraSpecialArgs = { inherit inputs; };
+   users = {
      "jam" = import ./home.nix;
    };
  };
@@ -143,16 +143,16 @@
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+   programs.mtr.enable = true;
+   programs.gnupg.agent = {
+     enable = true;
+     enableSSHSupport = true;
+   };
 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+   services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
