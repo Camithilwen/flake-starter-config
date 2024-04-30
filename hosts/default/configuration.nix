@@ -10,7 +10,7 @@
       ./hardware-configuration.nix
 #      ./main-user.nix
       inputs.home-manager.nixosModules.default
-      nixvim.nixosModules.nixvim
+      
     ];
 
 #  main-user.enable = true;
