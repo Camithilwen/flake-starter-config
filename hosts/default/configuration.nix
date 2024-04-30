@@ -10,6 +10,11 @@
       ./hardware-configuration.nix
 #      ./main-user.nix
       inputs.home-manager.nixosModules.default
+    
+      inputs.nixvim = {
+        url = "github: nix-community/nixvim";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
     ];
 
 #  main-user.enable = true;

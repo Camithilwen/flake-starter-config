@@ -76,5 +76,5 @@
   programs.home-manager.enable = true;
 
   # Nixvim :3
-  programs.nixvim.enable = true;
+#  programs.nixvim.enable = true;
 }
