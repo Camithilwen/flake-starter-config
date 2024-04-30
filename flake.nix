@@ -28,7 +28,7 @@
             # inherit (inputs) foo;
           };
         };
-   nvim = nixvim'.makeNixvimWithModule nixvimModule;
+   nvim = nixvim.makeNixvimWithModule nixvimModule;
 
   
    # homeManagerConfigurations = {
