@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, modulesPath, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -75,6 +75,10 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+
   # Nixvim :3
-inputs.nixvim.homeManagerModules.nixvim.enable = true;
+inputs.nixvim.homeManagerModules.nixvim = {
+
+enable = true;
+
 }
