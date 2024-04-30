@@ -3,28 +3,23 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-     home-manager = {
-       url = "github:nix-community/home-manager";
-       inputs.nixpkgs.follows = "nixpkgs";
-  
-      inputs.nixvim = {
-         url = "github:nix-community/nixvim";
-         # If you are not running an unstable channel of nixpkgs, select the corresponding branch of nixvim.
-         # url = "github:nix-community/nixvim/nixos-23.05";
-
-      inputs.nixpkgs.follows = "nixpkgs";
-       };
-    };
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
-      nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-         specialArgs = {inherit inputs;};
+  outputs = { self, nixpkgs, home-manager, nixvim, ... }@inputs: {
+    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux"; # Specify your system type here
+      specialArgs = { inherit inputs; };
       modules = [
         ./hosts/default/configuration.nix
-        inputs.home-manager.nixosModules.default
+        home-manager.nixosModules.home-manager
+        nixvim.nixosModules.default # or however it's correctly named
       ];
     };
   };
 }
+
+     
