@@ -20,7 +20,7 @@
     };
    
   nixvim = { url = "github:nix-community/nixvim";
-   	     inputs = {  nixpkgs.follows = "nixpkgs";);
+   	     inputs = {  nixpkgs.follows = "nixpkgs";};
              module = import /etc/nixos/modules/nixvim/config; # import the module directly
              # You can use `extraSpecialArgs` to pass additional arguments to your >
              extraSpecialArgs = {
