@@ -37,6 +37,10 @@
     # '')
   ];
 
+  imports = [
+    ./etc/nixos/modules/nixvim/flake.nix
+  ];
+
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
@@ -77,9 +81,9 @@
 
 
   # Nixvim :3
-  programs.nixvim = {
+ # programs.nixvim = {
 
-  enable = true;
+ # enable = true;
 
   };
 }
