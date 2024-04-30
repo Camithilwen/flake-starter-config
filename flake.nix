@@ -16,7 +16,7 @@
       modules = [
         ./hosts/default/configuration.nix
         home-manager.nixosModules.default
-        nixvim.nixosModules.nixvim
+#        nixvim.nixosModules.nixvim
 #	nixvim.homeManagerModules.nixvim
       ];
     };
