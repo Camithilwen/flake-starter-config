@@ -16,11 +16,26 @@
       modules = [
         ./hosts/default/configuration.nix
         home-manager.nixosModules.default
-#        nixvim.nixosModules.nixvim
+        nixvim.nixosModules.nixvim
 #	nixvim.homeManagerModules.nixvim
       ];
     };
+   
+ let
+    nixvimLib = nixvim.lib.${system};
+    nixvim' = nixvim.legacyPackages.${system};
 
+  nixvimModule = {
+          inherit pkgs;
+          module = import /etc/nixos/modules/nixvim/config; # import the module directly
+          # You can use `extraSpecialArgs` to pass additional arguments to your >
+          extraSpecialArgs = {
+            # inherit (inputs) foo;
+          };
+        };
+   nvim = nixvim'.makeNixvimWithModule nixvimModule;
+
+  
    # homeManagerConfigurations = {
     #  jam = home-manager.lib.homeManagerConfiguration {
      #   imports = [
