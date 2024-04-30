@@ -11,7 +11,7 @@
 
   outputs = { self, nixpkgs, home-manager, nixvim, ... } @ inputs: {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux"; // Specify your system type here
+      system = "x86_64-linux"; #  Specify your system type here
       specialArgs = { inherit inputs; };
       modules = [
         ./hosts/default/configuration.nix,
