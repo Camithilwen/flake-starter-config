@@ -24,7 +24,6 @@
       modules = [
         ./hosts/default/configuration.nix
         inputs.home-manager.nixosModules.default
-	inputs.nixvim
       ];
     };
   };
