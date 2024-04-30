@@ -21,7 +21,7 @@
       ];
     };
    
- let
+ 
     nixvimLib = nixvim.lib.${system};
     nixvim' = nixvim.legacyPackages.${system};
 
