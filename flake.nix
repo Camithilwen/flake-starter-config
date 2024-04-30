@@ -17,7 +17,7 @@
         ./hosts/default/configuration.nix
         home-manager.nixosModules.home-manager
        inputs. nixvim.nixosModules.nixvim # Using the NixVim module from the flake
-        /etc/nixos/modules/nixvim/default.nix # Directly include your existing NixVim config
+        /etc/nixos/modules/nixvim/config/default.nix # Directly include your existing NixVim config
       ];
     };
   };
