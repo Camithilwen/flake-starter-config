@@ -20,17 +20,17 @@
       ];
     };
 
-    homeManagerConfigurations = {
-      jam = home-manager.lib.homeManagerConfiguration {
-        imports = [
-          inputs.nixvim.homeManagerModules.nixvim
-        ];
-        home.username = "jam";
-        home.homeDirectory = "/home/jam";
-        system = "x86_64-linux";
+   # homeManagerConfigurations = {
+    #  jam = home-manager.lib.homeManagerConfiguration {
+     #   imports = [
+      #    inputs.nixvim.homeManagerModules.nixvim
+       # ];
+        #home.username = "jam";
+       # home.homeDirectory = "/home/jam";
+       # system = "x86_64-linux";
         # This should match the NixOS state version or the Home Manager release you're using
-        stateVersion = "23.11";
-      };
-    };
+       # stateVersion = "23.11";
+    #  };
+   # };
   };
 }
