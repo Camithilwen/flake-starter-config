@@ -14,9 +14,9 @@
       system = "x86_64-linux"; # Specify your system type here
       specialArgs = { inherit inputs; }; # Pass inputs to the configuration
       modules = [
-        ./hosts/default/configuration.nix,
-        home-manager.nixosModules.home-manager,
-        nixvim.nixosModules.nixvim, # Using the NixVim module from the flake
+        ./hosts/default/configuration.nix
+        home-manager.nixosModules.home-manager
+        nixvim.nixosModules.nixvim # Using the NixVim module from the flake
         /etc/nixos/modules/nixvim/default.nix # Directly include your existing NixVim config
       ];
     };
