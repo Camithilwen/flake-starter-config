@@ -38,7 +38,7 @@
   ];
 
   imports = [
-   inputs.nixvim.nixosModules.nixvim
+   inputs.nixvim.homeManagerModules.nixvim
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
