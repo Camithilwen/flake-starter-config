@@ -21,10 +21,6 @@
       ];
     };
    
- 
-    nixvimLib = nixvim.lib.${system};
-    nixvim' = nixvim.legacyPackages.${system};
-
   nixvimModule = {
           inherit pkgs;
           module = import /etc/nixos/modules/nixvim/config; # import the module directly
