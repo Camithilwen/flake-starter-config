@@ -5,8 +5,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nixvim.url = "github:nix-community/nixvim";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, home-manager, nixvim, ... } @ inputs: {
@@ -21,14 +19,15 @@
       ];
     };
    
-  nixvim = {
-          module = import /etc/nixos/modules/nixvim/config; # import the module directly
-          # You can use `extraSpecialArgs` to pass additional arguments to your >
-          extraSpecialArgs = {
-            # inherit (inputs) foo;
-          };
-        };
-   nvim = nixvim;
+  nixvim = { url = "github:nix-community/nixvim";
+   	     inputs = {  nixpkgs.follows = "nixpkgs";);
+             module = import /etc/nixos/modules/nixvim/config; # import the module directly
+             # You can use `extraSpecialArgs` to pass additional arguments to your >
+             extraSpecialArgs = {
+             # inherit (inputs) foo;
+           };
+         };
+  nvim = nixvim;
 
   
    # homeManagerConfigurations = {
