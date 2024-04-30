@@ -5,42 +5,20 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim.url = "github:nix-community/nixvim"; # Correct placement of NixVim flake input
+    nixvim.inputs.nixpkgs.follows = "nixpkgs"; # Ensure NixVim follows the same Nixpkgs version
   };
 
   outputs = { self, nixpkgs, home-manager, nixvim, ... } @ inputs: {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux"; #  Specify your system type here
-      specialArgs = { inherit inputs; };
+      system = "x86_64-linux"; # Specify your system type here
+      specialArgs = { inherit inputs; }; # Pass inputs to the configuration
       modules = [
-        ./hosts/default/configuration.nix
-        home-manager.nixosModules.default
-        nixvim.nixosModules.nixvim
-#	nixvim.homeManagerModules.nixvim
+        ./hosts/default/configuration.nix,
+        home-manager.nixosModules.home-manager,
+        nixvim.nixosModules.nixvim, # Using the NixVim module from the flake
+        /etc/nixos/modules/nixvim/default.nix # Directly include your existing NixVim config
       ];
     };
-   
-  nixvim = { url = "github:nix-community/nixvim";
-   	     inputs = {  nixpkgs.follows = "nixpkgs";};
-             module = import /etc/nixos/modules/nixvim; # import the module directly
-             # You can use `extraSpecialArgs` to pass additional arguments to your >
-             extraSpecialArgs = {
-             # inherit (inputs) foo;
-           };
-         };
-  nvim = nixvim;
-
-  
-   # homeManagerConfigurations = {
-    #  jam = home-manager.lib.homeManagerConfiguration {
-     #   imports = [
-      #    inputs.nixvim.homeManagerModules.nixvim
-       # ];
-        #home.username = "jam";
-       # home.homeDirectory = "/home/jam";
-       # system = "x86_64-linux";
-        # This should match the NixOS state version or the Home Manager release you're using
-       # stateVersion = "23.11";
-    #  };
-   # };
   };
 }
