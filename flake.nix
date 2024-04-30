@@ -9,17 +9,28 @@
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, nixvim, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, nixvim, ... } @ inputs: {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux"; # Specify your system type here
+      system = "x86_64-linux"; // Specify your system type here
       specialArgs = { inherit inputs; };
       modules = [
-        ./hosts/default/configuration.nix
-        home-manager.nixosModules.home-manager
+        ./hosts/default/configuration.nix,
+        home-manager.nixosModules.home-manager,
         nixvim.nixosModules.nixvim
       ];
     };
+
+    homeManagerConfigurations = {
+      jam = home-manager.lib.homeManagerConfiguration {
+        imports = [
+          inputs.nixvim.homeManagerModules.nixvim
+        ];
+        home.username = "jam";
+        home.homeDirectory = "/home/jam";
+        system = "x86_64-linux";
+        # This should match the NixOS state version or the Home Manager release you're using
+        stateVersion = "23.11";
+      };
+    };
   };
 }
-
-     
