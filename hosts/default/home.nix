@@ -38,7 +38,7 @@
   ];
 
   imports = [
-    ./etc/nixos/modules/nixvim/flake.nix
+   home/etc/nixos/modules/nixvim/flake.nix
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
