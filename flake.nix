@@ -21,7 +21,7 @@
       ];
     };
    
-  nixvimModule = {
+  nixvim = {
           module = import /etc/nixos/modules/nixvim/config; # import the module directly
           # You can use `extraSpecialArgs` to pass additional arguments to your >
           extraSpecialArgs = {
