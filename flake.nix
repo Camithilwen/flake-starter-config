@@ -14,8 +14,8 @@
       system = "x86_64-linux"; #  Specify your system type here
       specialArgs = { inherit inputs; };
       modules = [
-        ./hosts/default/configuration.nix,
-        home-manager.nixosModules.home-manager,
+        ./hosts/default/configuration.nix
+        home-manager.nixosModules.home-manager
         nixvim.nixosModules.nixvim
       ];
     };
