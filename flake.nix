@@ -9,7 +9,7 @@
    # nixvim.inputs.nixpkgs.follows = "nixpkgs"; # Ensure NixVim follows the same Nixpkgs version
   };
 
-  outputs = { self, ... } @ inputs: {
+  outputs = { self, nixpkgs, ... } @ inputs: {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux"; # Specify your system type here
       specialArgs = { inherit inputs; }; # Pass inputs to the configuration
