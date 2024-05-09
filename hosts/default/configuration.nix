@@ -9,8 +9,8 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
 #      ./main-user.nix
-      inputs.home-manager.nixosModules.default
-      
+#      inputs.home-manager.nixosModules.default
+      <home-manager/nixos>
     ];
 
 #  main-user.enable = true;
@@ -102,13 +102,11 @@
     ];
   };
 
-  home-manager = {
-
-   extraSpecialArgs = { inherit inputs; };
-   users = {
-     "jam" = import ./home.nix;
-   };
- };
+  home-manager.users.jam = { pkgs, ... }: {
+   home.packages = with pkgs; [];
+   programs.bash.enable = true;
+   home.stateVersion = "23.11";
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -136,9 +134,9 @@
 	pkgs.zoom-us
 	pkgs.qemu
 	pkgs.gns3-gui
-	pkgs.blender	
+	pkgs.blender 	
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+  	pkgs.wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
