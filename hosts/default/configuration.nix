@@ -24,6 +24,12 @@
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = lib.optionalString (config.nix.package == pkgs.nixFlakes)
+      "experimental-features = nix-command flakes";
+  };
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Configure network proxy if necessary
@@ -137,6 +143,7 @@
 	pkgs.blender 	
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   	pkgs.wget
+	pkgs.home-manager
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -145,7 +152,7 @@
    programs.gnupg.agent = {
      enable = true;
      enableSSHSupport = true;
-   };
+   };  
 
   # List services that you want to enable:
 
