@@ -30,16 +30,16 @@
 		home-manager.useGlobalPkgs = true;
 		home-manager.useUserPackages = true;
 		home-manager.users.jam = import /etc/nixos/modules/home-manager/home.nix;
-		home-manager.extraSpecialArgs = { inherit inputs; }	
+		home-manager.extraSpecialArgs = { inherit inputs; };	
       ];
     };
 
-    homeConfigurations.default = home-manager.lib.homeManagerConfiguration {
-	modules = [
-	 ~/.config/home-manager/home.nix
-	];
-	extraSpecialArgs = { inherit inputs; };
-    }; 
+#    homeConfigurations.default = home-manager.lib.homeManagerConfiguration {
+#	modules = [
+#	 ~/.config/home-manager/home.nix
+#	];
+#	extraSpecialArgs = { inherit inputs; };
+ #   }; 
    
   };
 }
