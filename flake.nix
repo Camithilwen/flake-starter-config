@@ -31,6 +31,7 @@
 		home-manager.useUserPackages = true;
 		home-manager.users.jam = import /etc/nixos/modules/home-manager/home.nix;
 		home-manager.extraSpecialArgs = { inherit inputs; };	
+	}
       ];
     };
 
