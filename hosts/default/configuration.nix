@@ -10,7 +10,7 @@
       ./hardware-configuration.nix
 #      ./main-user.nix
 #      inputs.home-manager.nixosModules.default
-      <home-manager/nixos>
+#      <home-manager/nixos>
     ];
 
 #  main-user.enable = true;
@@ -108,11 +108,11 @@
     ];
   };
 
-  home-manager.users.jam = { pkgs, ... }: {
-   home.packages = with pkgs; [];
-   programs.bash.enable = true;
-   home.stateVersion = "23.11";
-  };
+#  home-manager.users.jam = { pkgs, ... }: {
+ #  home.packages = with pkgs; [];
+  # programs.bash.enable = true;
+   #home.stateVersion = "23.11";
+#  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
