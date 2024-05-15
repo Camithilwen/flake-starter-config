@@ -70,12 +70,16 @@
   #  /etc/profiles/per-user/jam/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+#     EDITOR = "programs.nvim";
   };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   programs.git.enable = true;
-  programs.neovim.enable = true;
-  programs.nixvim.enable = true;
+#  programs.neovim.enable = true;
+  programs.nixvim = {
+	enable = true;
+	defaultEditor = true;
+	imports = [/etc/nixos/modules/nixvim/default.nix];
+  };
 }
