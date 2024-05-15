@@ -16,7 +16,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nixvim,  ... }@inputs: 
+  outputs = inputs@{ nixpkgs, home-manager, nixvim,  ... }: 
     let
 	system = "x86_64-linux"; # Specify your system type here
    	pkgs = nixpkgs.legacyPackages.${system};
@@ -25,13 +25,18 @@
       specialArgs = { inherit inputs; }; # Pass inputs to the configuration
       modules = [
         ./hosts/default/configuration.nix
-#        home-manager.nixosModules.home-manager	
+        home-manager.nixosModules.home-manager
+	{
+		home-manager.useGlobalPkgs = true;
+		home-manager.useUserPackages = true;
+		home-manager.users.jam = import /etc/nixos/modules/home-manager/home.nix;
+		home-manager.extraSpecialArgs = { inherit inputs; }	
       ];
     };
 
     homeConfigurations.default = home-manager.lib.homeManagerConfiguration {
 	modules = [
-	  ./modules/home-manager/home.nix
+	 ~/.config/home-manager/home.nix
 	];
 	extraSpecialArgs = { inherit inputs; };
     }; 
