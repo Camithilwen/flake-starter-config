@@ -16,7 +16,7 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, nixvim,  ... }: 
+  outputs = { self,  nixpkgs, home-manager, nixvim,  ... }@inputs: 
     let
 	system = "x86_64-linux"; # Specify your system type here
    	pkgs = nixpkgs.legacyPackages.${system};
@@ -30,11 +30,12 @@
 		home-manager.useGlobalPkgs = true;
 		home-manager.useUserPackages = true;
 		home-manager.users.jam = import /etc/nixos/modules/home-manager/home.nix;
-		home-manager.extraSpecialArgs = { inherit inputs; };	
+		home-manager.extraSpecialArgs = { inherit inputs; };
+		home-manager.sharedModules = [ nixvim.homeManagerModules.nixvim ];	
 	}
       ];
     };
-
+#	UNECCESSARY WITH DECLARATIVE HOME-MANAGER CONFIG
 #    homeConfigurations.default = home-manager.lib.homeManagerConfiguration {
 #	modules = [
 #	 ~/.config/home-manager/home.nix

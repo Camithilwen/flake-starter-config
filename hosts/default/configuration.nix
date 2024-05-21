@@ -136,6 +136,7 @@
 	pkgs.throttled
 	pkgs.fwupd
 	pkgs.thunderbird
+	pkgs.protonmail-bridge
 	pkgs.spotifyd
 	pkgs.zoom-us
 	pkgs.qemu

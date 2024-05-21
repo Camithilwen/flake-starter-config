@@ -1,7 +1,6 @@
-{ config, pkgs, inputs,  ... }:
+{ config, pkgs, inputs, ... }: {
 
-{
-  imports = [inputs.nixvim.homeManagerModules.nixvim];
+	#  imports = [ inputs.nixvim.homeManagerModules.nixvim ];
   
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -19,7 +18,7 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
+  home.packages = with pkgs; [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -51,6 +50,8 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+
+   
   };
 
   # Home Manager can also manage your environment variables through
@@ -73,13 +74,15 @@
 #     EDITOR = "programs.nvim";
   };
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-  programs.git.enable = true;
-#  programs.neovim.enable = true;
-  programs.nixvim = {
-	enable = true;
-	defaultEditor = true;
-	imports = [/etc/nixos/modules/nixvim/default.nix];
-  };
-}
+  programs = {
+ 	 # Let Home Manager install and manage itself.
+	 home-manager.enable = true;
+	 git.enable = true;
+	# neovim.enable = true;
+         nixvim = {
+               enable = true;
+               defaultEditor = true;
+#               packages = [ /etc/nixos/modules/nixvim/config/default.nix ];
+         };
+   }; 
+} 
