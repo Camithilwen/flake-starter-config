@@ -125,10 +125,10 @@
 	pkgs.python3
 	pkgs.python311Packages.jupyter
 	pkgs.python311Packages.jupytext
+	pkgs.jupyter-all
 	pkgs.git
 #	pkgs.obsidian
 	pkgs.gimp
-#	pkgs.jupyter-all
 	pkgs.vlc
 	pkgs.steam
 	pkgs.discord
