@@ -127,7 +127,7 @@
 	pkgs.python311Packages.jupytext
 	pkgs.jupyter-all
 	pkgs.git
-#	pkgs.obsidian
+	pkgs.obsidian
 	pkgs.gimp
 	pkgs.vlc
 	pkgs.steam
