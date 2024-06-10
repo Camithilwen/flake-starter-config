@@ -3,7 +3,7 @@
 
   inputs = {
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
 
     home-manager = {
 	url = "github:nix-community/home-manager";
@@ -31,7 +31,7 @@
 		home-manager.useUserPackages = true;
 		home-manager.users.jam = import /etc/nixos/modules/home-manager/home.nix;
 		home-manager.extraSpecialArgs = { inherit inputs; };
-		home-manager.sharedModules = [ nixvim.homeManagerModules.nixvim ];	
+	#	home-manager.sharedModules = [ nixvim.homeManagerModules.nixvim ];	
 	}
       ];
     };
