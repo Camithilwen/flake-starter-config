@@ -79,10 +79,10 @@
 	 home-manager.enable = true;
 	 git.enable = true;
 	# neovim.enable = true;
-         nixvim = {
-               enable = true;
-               defaultEditor = true;
+  #       nixvim = {
+ #              enable = true;
+#               defaultEditor = true;
 #               packages = [ /etc/nixos/modules/nixvim/config/default.nix ];
-         };
+#         };
    }; 
 } 
