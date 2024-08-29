@@ -22,8 +22,8 @@
   boot.loader.grub.useOSProber = true;
 
   networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
+ #  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+#   security.pki.certificateFiles = ["~/networking/certificates/shepherd/OnboardCertificate.pkcs12"];
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = lib.optionalString (config.nix.package == pkgs.nixFlakes)
@@ -144,10 +144,18 @@
 	pkgs.zoom-us
 	pkgs.qemu
 	pkgs.gns3-gui
-	pkgs.blender 	
+	pkgs.blender
+	pkgs.openssl 	
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   	pkgs.wget
 #	pkgs.home-manager
+	pkgs.vscodium-fhs
+	pkgs.vscode-fhs
+	pkgs.qemu
+	pkgs.wine	
+	pkgs.virt-manager
+	pkgs.libvirt
+	pkgs.dconf
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -156,7 +164,10 @@
    programs.gnupg.agent = {
      enable = true;
      enableSSHSupport = true;
-   };  
+   };
+   virtualisation.libvirtd.enable = true;
+   programs.virt-manager.enable = true;
+
 
   # List services that you want to enable:
 
