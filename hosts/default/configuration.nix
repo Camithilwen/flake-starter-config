@@ -122,9 +122,9 @@
   environment.systemPackages = with pkgs; [
 	pkgs.bluej
 	pkgs.jdk21
-	pkgs.python3
-	pkgs.python311Packages.jupyter
-	pkgs.python311Packages.jupytext
+	(python311.withPackages(ps: with ps; [ pandas ipykernel pip jupyter jupytext tkinter]))
+#	pkgs.python311Packages.jupyter
+#	pkgs.python311Packages.jupytext
 	pkgs.jupyter-all
 	pkgs.git
 	pkgs.obsidian
@@ -135,7 +135,7 @@
 	pkgs.wireshark
 	pkgs.rustup
 	pkgs.brave
-	pkgs.libreoffice
+	pkgs.libreoffice-fresh
 	pkgs.throttled
 	pkgs.fwupd
 	pkgs.thunderbird
@@ -156,6 +156,23 @@
 	pkgs.virt-manager
 	pkgs.libvirt
 	pkgs.dconf
+	pkgs.spotify
+	pkgs.rustdesk
+	pkgs.remmina
+	pkgs.kdePackages.krdc
+	pkgs.openvpn
+	pkgs.openvpn3
+	pkgs.gtk4
+	pkgs.gtk3
+	pkgs.gtk2
+#	pkgs.python311Packages.ipykernel
+#	pkgs.python311Packages.pip
+	pkgs.ollama
+#	pkgs.python311Packages.pandas
+#	pkgs.kooha
+#	pkgs.gpu-screen-recorder
+	pkgs.simplescreenrecorder
+	pkgs.olive-editor
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
