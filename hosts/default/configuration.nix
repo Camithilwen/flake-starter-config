@@ -173,6 +173,7 @@
 #	pkgs.gpu-screen-recorder
 	pkgs.simplescreenrecorder
 	pkgs.olive-editor
+	pkgs.bfg-repo-cleaner
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
