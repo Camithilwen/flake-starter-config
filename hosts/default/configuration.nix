@@ -11,6 +11,7 @@
 #      ./main-user.nix
 #      inputs.home-manager.nixosModules.default
 #      <home-manager/nixos>
+#       <nixpkgs/nixos/modules/services/virtualization/docker.nix>
     ];
 
 #  main-user.enable = true;
@@ -25,8 +26,8 @@
  #  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 #   security.pki.certificateFiles = ["~/networking/certificates/shepherd/OnboardCertificate.pkcs12"];
   nix = {
-    package = pkgs.nixFlakes;
-    extraOptions = lib.optionalString (config.nix.package == pkgs.nixFlakes)
+    package = pkgs.nixVersions.stable;
+    extraOptions = lib.optionalString (config.nix.package == pkgs.nixVersions.stable)
       "experimental-features = nix-command flakes";
   };
 
@@ -77,7 +78,7 @@
   hardware.bluetooth.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
+#  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -93,6 +94,9 @@
     #media-session.enable = true;
   };
 
+    virtualisation.docker.enable = true;
+#    users.users.jam.extraGroups = [ "docker" ];
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -100,11 +104,11 @@
   users.users.jam = {
     isNormalUser = true;
     description = "Jamie Kemman";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
-      firefox
-      kate
-      thunderbird
+ #     firefox
+  #    kate
+   #   thunderbird
     ];
   };
 
@@ -120,9 +124,9 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-	pkgs.bluej
-	pkgs.jdk21
-	(python311.withPackages(ps: with ps; [ pandas ipykernel pip jupyter jupytext tkinter]))
+#	pkgs.bluej
+#	pkgs.jdk21
+	(python311.withPackages(ps: with ps; [ pandas ipykernel pip jupyter jupytext tkinter opencv4 imageio qtpy ]))
 #	pkgs.python311Packages.jupyter
 #	pkgs.python311Packages.jupytext
 	pkgs.jupyter-all
@@ -140,7 +144,7 @@
 	pkgs.fwupd
 	pkgs.thunderbird
 	pkgs.protonmail-bridge
-	pkgs.spotifyd
+#	pkgs.spotifyd
 	pkgs.zoom-us
 	pkgs.qemu
 	pkgs.gns3-gui
@@ -149,7 +153,7 @@
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   	pkgs.wget
 #	pkgs.home-manager
-	pkgs.vscodium-fhs
+#	pkgs.vscodium-fhs
 	pkgs.vscode-fhs
 	pkgs.qemu
 	pkgs.wine	
@@ -158,22 +162,31 @@
 	pkgs.dconf
 	pkgs.spotify
 	pkgs.rustdesk
-	pkgs.remmina
+#	pkgs.remmina
 	pkgs.kdePackages.krdc
 	pkgs.openvpn
 	pkgs.openvpn3
-	pkgs.gtk4
-	pkgs.gtk3
-	pkgs.gtk2
+#	pkgs.networkmanager-openvpn
+#	pkgs.gtk4
+#	pkgs.gtk3
+#	pkgs.gtk2
 #	pkgs.python311Packages.ipykernel
 #	pkgs.python311Packages.pip
-	pkgs.ollama
+#	pkgs.ollama
 #	pkgs.python311Packages.pandas
 #	pkgs.kooha
 #	pkgs.gpu-screen-recorder
 	pkgs.simplescreenrecorder
 	pkgs.olive-editor
 	pkgs.bfg-repo-cleaner
+	pkgs.libGL
+	pkgs.libGLU
+#	pkgs.docker	
+	pkgs.protonvpn-gui
+#	pkgs.ventoy-full
+	pkgs.woeusb
+	pkgs.ntfs3g
+	pkgs.gfn-electron
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -185,7 +198,6 @@
    };
    virtualisation.libvirtd.enable = true;
    programs.virt-manager.enable = true;
-
 
   # List services that you want to enable:
 
